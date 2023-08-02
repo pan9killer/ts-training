@@ -57,3 +57,33 @@ const sendInvoice = (
 
 const invoice = sendInvoice(monthPayments, electricityUserData, waterUserData);
 console.log(invoice);
+
+const prt = (a: number | string, b: number | boolean) => {
+  if (typeof a === typeof b) {
+    console.log('true');
+  }
+};
+
+prt(3, 4);
+
+const checkObj = (readings: { system: number } | { user: number }): void => {
+  if ('system' in readings) {
+    console.log(readings.system);
+  } else {
+    console.log(readings.user);
+  }
+};
+
+checkObj({ user: 5 });
+
+const logValue = (x: string | Date): void => {
+  if (x instanceof Date) {
+    console.log(x.getDate());
+  } else {
+    console.log(x.trim());
+  }
+};
+
+const date = new Date();
+
+logValue(date);
