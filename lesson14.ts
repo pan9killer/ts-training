@@ -25,8 +25,25 @@ const logBrtMsg1 = ({
   if (isBirthday) {
     return `Graz ${userName.toUpperCase()}, age: ${age + 1}`;
   } else {
-    return createError(error);
+    return createError1(error);
   }
 };
 
 console.log(logBrtMsg1(userData));
+
+const departments: string[] = ['dev', 'design', 'marketing'];
+
+const department = departments[0];
+
+// departments.push(5);
+const report = departments
+  .filter((department: string) => department !== 'dev')
+  .map((department: string) => `${department} - done`);
+
+const nums: number[][] = [
+  [3, 4, 5],
+  [3, 4, 5]
+];
+
+const [first] = report;
+console.log(first);
