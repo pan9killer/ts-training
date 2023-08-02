@@ -4,6 +4,15 @@ const electricityUserData = {
   mode: 'double'
 };
 
+const userDataTuple: [...boolean[], number, string] = [true, false, 40, 'John'];
+// userDataTuple[3];
+// userDataTuple.push(50);
+// userDataTuple[3];
+
+const res = userDataTuple.map(el => `${el} - data`);
+
+const [bthd, age, userName] = userDataTuple;
+
 const waterUserData = {
   readings: 3,
   units: 'm3'
