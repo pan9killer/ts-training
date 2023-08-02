@@ -1,11 +1,18 @@
-const isbirthdayData: boolean = true;
-let ageData: number = 40;
-const userNameData: string = 'john';
+const currRate = "1.05";
 
-function logBrtMsg(isBirthday: boolean, userName: string, age: number) {
-  if (isBirthday) {
-    console.log(`Graz ${userName.toUpperCase()}, age: ${age + 1}`);
-  }
+const fetchCurr = (response:string): number => {
+	const data = JSON.parse(response);
+	return data;
+};
+
+function transferEurToUsd(available: boolean, amount: number, commission: number): void {
+	if (available) {
+		let res: number = fetchCurr(currRate) * amount * commission;
+		console.log(res);
+		// Или запись в элемент на странице вместо консоли
+	} else {
+		console.log("Сейчас обмен недоступен");
+	}
 }
 
-logBrtMsg(isbirthdayData, userNameData, ageData);
+transferEurToUsd(true, 500, 1.05);
