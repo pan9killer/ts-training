@@ -36,10 +36,13 @@ function startServer(protocol: 'http' | 'https', port: 3000 | 3001): 'Server sta
 
 startServer('https', 3001);
 
+type AnimationTimingFunc = 'ease' | 'ease-out' | 'ease-in';
+type AnimationID = string | number;
+
 function createAnimation(
-  id: string | number,
+  id: AnimationID,
   animName: string,
-  timingFunc: 'ease' | 'ease-out' | 'ease-in' = 'ease',
+  timingFunc: AnimationTimingFunc = 'ease',
   duration: number,
   iterCount: 'infinite' | number
 ): void {
