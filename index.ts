@@ -24,35 +24,57 @@ msg = 'Hello';
 const port3000: number = 3000;
 const port3001: number = 3001;
 
-type Config = { protocol: 'http' | 'https'; port: 3000 | 3001 };
-type Role = { role: string };
-type ConfigWithRole = Config & Role;
+// type Config = { protocol: 'http' | 'https'; port: 3000 | 3001 };
+interface Config {
+  protocol: 'http' | 'https';
+  port: 3000 | 3001;
+  log: (msg: string) => void;
+}
+// type Role = { role: string };
+// type ConfigWithRole = Config & Role;
 
-const severConfig: ConfigWithRole = {
+interface Role {
+  role: string;
+}
+
+interface ConfigWithRole extends Config, Role {}
+
+const serverConfig: ConfigWithRole = {
   protocol: 'https',
   port: 3001,
-  role: 'admin'
+  role: 'admin',
+  log: (msg: string): void => console.log(msg)
 };
 
-const backup: ConfigWithRole = {
-  protocol: 'http',
-  port: 3000,
-  role: 'sysadmin'
-};
+// const backup: Config = {
+//   protocol: 'http',
+//   port: 3000,
+//   role: 'sysadmin'
+// };
 
-type StartFunction = (protocol: 'http' | 'https', port: 3000 | 3001) => string;
+type StartFunction = (protocol: 'http' | 'https', port: 3000 | 3001, log: (msg: string) => void) => string;
 
-const startServer: StartFunction = (protocol: 'http' | 'https', port: 3000 | 3001): 'Server started' => {
-  if (port === port3000 || port === port3001) {
-    console.log(`Server started on ${protocol}://server:${port}`);
-  } else {
-    console.error('Invalid port');
-  }
+const startServer: StartFunction = (
+  protocol: 'http' | 'https',
+  port: 3000 | 3001,
+  log: (msg: string) => void
+): 'Server started' => {
+  log(`Server started on ${protocol}://server:${port}`);
 
   return 'Server started';
 };
 
-startServer(severConfig.protocol, severConfig.port);
+startServer(serverConfig.protocol, serverConfig.port, serverConfig.log);
+
+interface Styles {
+  [key: string]: string;
+}
+
+const styles: Styles = {
+  position: 'absolute',
+  top: '20px',
+  left: '50px'
+};
 
 type AnimationTimingFunc = 'ease' | 'ease-out' | 'ease-in';
 type AnimationID = string | number;
