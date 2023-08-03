@@ -24,7 +24,25 @@ msg = 'Hello';
 const port3000: number = 3000;
 const port3001: number = 3001;
 
-function startServer(protocol: 'http' | 'https', port: 3000 | 3001): 'Server started' {
+type Config = { protocol: 'http' | 'https'; port: 3000 | 3001 };
+type Role = { role: string };
+type ConfigWithRole = Config & Role;
+
+const severConfig: ConfigWithRole = {
+  protocol: 'https',
+  port: 3001,
+  role: 'admin'
+};
+
+const backup: ConfigWithRole = {
+  protocol: 'http',
+  port: 3000,
+  role: 'sysadmin'
+};
+
+type StartFunction = (protocol: 'http' | 'https', port: 3000 | 3001) => string;
+
+const startServer: StartFunction = (protocol: 'http' | 'https', port: 3000 | 3001): 'Server started' => {
   if (port === port3000 || port === port3001) {
     console.log(`Server started on ${protocol}://server:${port}`);
   } else {
@@ -32,9 +50,9 @@ function startServer(protocol: 'http' | 'https', port: 3000 | 3001): 'Server sta
   }
 
   return 'Server started';
-}
+};
 
-startServer('https', 3001);
+startServer(severConfig.protocol, severConfig.port);
 
 type AnimationTimingFunc = 'ease' | 'ease-out' | 'ease-in';
 type AnimationID = string | number;
