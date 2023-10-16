@@ -17,5 +17,5 @@ const getRandomData = () => {
   }
 };
 
-const data = getRandomData();
-const trimmedData = data ? data.trim() : data;
+const data1 = getRandomData();
+const trimmedData = data1 ? data1.trim() : data1;
