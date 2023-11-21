@@ -59,7 +59,7 @@ interface Figure {
 }
 
 function calculateAmountOfFigures<T extends Figure>(figure: T[]): AmountOfFigures {
-  const AmountOfFiguresObject = {
+  const AmountOfFiguresObject: AmountOfFigures = {
     squares: 0,
     circles: 0,
     triangles: 0,
